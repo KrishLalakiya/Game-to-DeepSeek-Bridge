@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Game to DeepSeek Bridge",
+  "version": "1.0",
+  "description": "Sends game clipboard to DeepSeek and returns the answer.",
+  "permissions": [
+    "clipboardRead",
+    "clipboardWrite",
+    "offscreen",
+    "tabs",
+    "scripting",
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://chat.deepseek.com/*",
+    "http://127.0.0.1:11499/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://chat.deepseek.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "commands": {
+    "trigger-process": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+5"
+      },
+      "description": "Process game text",
+      "global": true
+    }
+  }
+}
